@@ -137,6 +137,21 @@ let is_host = (str_hid, str_gid) =>
 let is_admin = user_id =>
   count("users", "is_admin = 1 AND rowid = " ++ string_of_int(user_id)) > 0 /*insertion functions */;
 
+let add_admin = (username, password, name, is_admin) =>
+  if (name == "" || username == "") {
+    None;
+  } else {
+    let sql =
+      Printf.sprintf(
+        "INSERT INTO users (username, password, name) VALUES('%s','%s','%s','%s'); ",
+        username,
+        password,
+        name,
+        string_of_bool(is_admin),
+      );
+    print_endline(username);
+    make_response(exec(db, sql));
+  };
 let add_user = (username, password, name) =>
   if (name == "" || username == "") {
     None;

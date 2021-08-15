@@ -24,7 +24,8 @@ test:
 
 format:
 	opam exec -- dune build @fmt --auto-promote
-clear:
+
+drop:
 	rm upick.db
 
 clean:

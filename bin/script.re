@@ -1,5 +1,10 @@
 open Lib.Dbquery;
 
+let admin_list = [
+  ("SqueegyLo", "SqueegyLo123", "SqueegyLo", true),
+  ("Tyrone", "Tyrone123", "Tyrone",true),
+  ("Biscuit", "Biscuit123", "Biscuit",true),
+];
 let user_list = [
   ("reetuparikh", "Reetu123", "Reetu"),
   ("andrewzeng", "Andrew123", "Andrew"),
@@ -99,6 +104,14 @@ let rec add_users' =
       ignore(add_user(un, hash, n));
       add_users'(t);
     };
+let rec add_admins' =
+  fun
+  | [] => ()
+  | [(un, pw, n, a), ...t] => {
+      let hash = pw |> Bcrypt.hash |> Bcrypt.string_of_hash;
+      ignore(add_admin(un, hash, n, a));
+      add_admins'(t);
+    };
 
 let rec add_friends' =
   fun
@@ -190,6 +203,7 @@ let rec add_survey' =
 let _ = {
   create_tables();
   add_users'(user_list);
+  add_admins'(admin_list);
   add_friends'(friends_list);
   add_group_info'(group_info_list);
   add_groups'(group_invite_list);

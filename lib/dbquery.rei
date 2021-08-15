@@ -34,6 +34,9 @@ exception Not_found;
 /**[add_user username password_hash name] inserts a user in the database.*/
 
 let add_user: (string, string, string) => option(int64);
+/**[add_user username password_hash name] inserts a user in the database.*/
+
+let add_admin: (string, string, string,bool) => option(int64);
 
 /**[update_username user_id username] updates the database with the new
    desired username for the user.
