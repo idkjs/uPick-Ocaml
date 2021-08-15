@@ -1,0 +1,15 @@
+(executable
+ (name main)
+ (modules main)
+ (public_name upick)
+ (libraries lib))
+
+(executable
+ (name script)
+ (modules script)
+ (libraries lib))
+
+(env
+ (dev
+  (flags
+   (:standard -w -32))))

@@ -1,4 +1,13 @@
-(library 
-  (name lib)
-  (public_name lib)
-    (libraries yojson opium safepass sqlite3 lwt str dotenv))
+(library
+ (name lib)
+ (public_name lib)
+ (libraries yojson opium safepass sqlite3 lwt str dotenv cohttp
+   cohttp-lwt-unix ezjsonm ocplib-json-typed))
+
+;  (preprocess
+;   (pps ppx_deriving_yojson ppx_yojson ppx_rapper)))
+
+(env
+ (dev
+  (flags
+   (:standard -w -32))))

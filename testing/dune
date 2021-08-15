@@ -1,4 +1,8 @@
-(test 
-  (name test) 
-    (deps .env)
-    (libraries lib ounit2))
+; (test
+;  (name test)
+;  (deps .env)
+;  (libraries lib ounit2 dotenv))
+(test
+ (name upick_test)
+ (deps .env)
+ (libraries lib ounit2 dotenv))

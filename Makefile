@@ -1,21 +1,25 @@
-MODULES=lib/db lib/dbquery main lib/search testing/unit_test
-OBJECTS=$(MODULES:=.cmo)
-MLS=$(MODULES:=.ml)
-MLIS=$(MODULES:=.mli)
+# MODULES=lib/db lib/dbquery main lib/search testing/unit_test
+# OBJECTS=$(MODULES:=.cmo)
+# MLS=$(MODULES:=.re)
+# MLIS=$(MODULES:=.rei)
 
 default: build
 	utop
 
 build:
-	@dune build main.exe
+	@dune build @all
 
 script:
-	@dune exec ./script.exe
+	@dune exec ./bin/script.exe
 
-test: 
+test:
 	@dune clean
-	@dune runtest -j 1
+	@dune build @dotenvtests/runtest
+	@dune build @testing/runtest
+	# @dune runtest -j 1
 
+format:
+	opam exec -- dune build @fmt --auto-promote
 clear:
 	rm upick.db
 
@@ -23,13 +27,13 @@ clean:
 	@dune clean
 	rm -rf doc.public project.zip
 
-docs: clean build 
+docs: clean build
 	@dune build @doc
 	mkdir -p doc.public
 	cp -r _build/default/_doc/_html doc.public
-	
+
 app:
-	@dune exec ./main.exe
+	@dune exec ./bin/main.exe
 
 zip:
-	zip project.zip *.ml* .ocamlinit .merlin *.mli* dune dune-project *.txt* *.md* *.json _tags Makefile
+	zip project.zip *.re* .ocamlinit .merlin *.rei* dune dune-project *.txt* *.md* *.json _tags Makefile
