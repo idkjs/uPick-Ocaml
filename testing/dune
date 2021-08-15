@@ -5,4 +5,4 @@
 (test
  (name upick_test)
  (deps .env)
- (libraries lib ounit2 dotenv))
+ (libraries upick.lib ounit2 dotenv))

@@ -1,6 +1,6 @@
 (library
  (name lib)
- (public_name lib)
+ (public_name upick.lib)
  (libraries yojson opium safepass sqlite3 lwt str dotenv cohttp
    cohttp-lwt-unix ezjsonm ocplib-json-typed))
 
