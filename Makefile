@@ -6,6 +6,10 @@
 default: build
 	utop
 
+lock: ## Generate a lock file
+	opam lock -y .
+	cd lib && opam lock -y .
+
 build:
 	@dune build @all
 
